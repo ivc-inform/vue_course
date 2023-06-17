@@ -76,6 +76,11 @@ export default {
   },
   mounted() {
     this.fetchPosts()
+  },
+  watch: {
+    selectedSort(newValue) {
+      this.posts.sort((a, b) => a[newValue]?.localeCompare(b[newValue]))
+    }
   }
 }
 </script>

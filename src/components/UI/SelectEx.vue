@@ -6,7 +6,6 @@
       Выберите из списка
     </option>
     <option
-        value=""
         v-for="option in options"
         :key="option.value"
         :value="option.value">
@@ -20,7 +19,7 @@ export default {
   name: "select-ex",
   data() {
     return {
-      modelValue:""
+      modelValue: ""
     }
   },
   props: {
@@ -31,6 +30,7 @@ export default {
   },
   methods: {
     changeOption(event) {
+      console.log(event)
       this.$emit("update:modelValue", event.target.value)
     }
   }

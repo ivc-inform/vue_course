@@ -39,14 +39,14 @@ export default {
       dialogVisible: false,
       isLoading: false,
       selectedSort: "",
-      sortOptions:[
+      sortOptions: [
         {
           value: "title",
-          name:"По названию"
+          name: "По названию"
         },
         {
-          value: "bdy",
-          name:"По описанию"
+          value: "body",
+          name: "По описанию"
         }
       ]
     }

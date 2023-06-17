@@ -11,12 +11,18 @@
         class="input"
         type="text"
         placeholder="Описание">
-    <button class="btn" @click="createPost">Создать</button>
+    <button-ex
+        class="btn"
+        style="align-self: flex-end; margin-top: 15px"
+        @click="createPost">Создать</button-ex>
   </form>
 </template>
 
 <script lang="js">
+import ButtonEx from "@/components/ButtonEx.vue";
+
 export default {
+  components: {ButtonEx},
   data() {
     return {
       post: {

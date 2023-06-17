@@ -5,14 +5,17 @@
       <div><strong>Описание: </strong>{{ post.body }}</div>
     </div>
     <div class="post__btns">
-      <button>Удалить</button>
+      <button-ex>Удалить</button-ex>
     </div>
   </div>
 </template>
 
 <script lang="js">
 
+import ButtonEx from "@/components/ButtonEx.vue";
+
 export default {
+  components: {ButtonEx},
   props: {
     post: {
       type: Object,

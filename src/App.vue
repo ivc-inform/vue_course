@@ -1,7 +1,11 @@
 <template>
   <div class="app">
     <h1>Страница с постами</h1>
-    <button-ex @click="showDialog" style="margin: 15px 0;">Создать пост</button-ex>
+    <div class="app_btns">
+      <button-ex @click="showDialog">Создать пост</button-ex>
+      <select-ex v-model="selectedSort"/>
+    </div>
+
     <dialog-ex v-model:show="dialogVisible">
       <post-form
           @create="createPost"
@@ -25,14 +29,16 @@ import PostForm from "@/components/PostForm.vue";
 import PostList from "@/components/PostList.vue";
 import DialogEx from "@/components/UI/DialogEx.vue";
 import axios from "axios";
+import SelectEx from "@/components/UI/SelectEx.vue";
 
 export default {
-  components: {DialogEx, PostList, PostForm},
+  components: {SelectEx, DialogEx, PostList, PostForm},
   data() {
     return {
       posts: [],
       dialogVisible: false,
-      isLoading: false
+      isLoading: false,
+      selectedSort: ""
     }
   },
   methods: {
@@ -74,6 +80,12 @@ export default {
 
 .app {
   padding: 20px;
+}
+
+.app_btns {
+  display: flex;
+  justify-content: space-between;
+  margin: 15px 0;
 }
 
 

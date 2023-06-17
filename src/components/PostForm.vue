@@ -2,18 +2,17 @@
   <form @submit.prevent>
     <h4>Создание поста</h4>
     <input-ex
-        v-model:value="post.title"
+        v-model="post.title"
         type="text"
-        placeholder="Названиие"/>
+        placeholder="Названиие" />
     <input-ex
         v-model="post.body"
         type="text"
-        placeholder="Описание"/>
+        placeholder="Описание" />
     <button-ex
         class="btn"
         style="align-self: flex-end; margin-top: 15px"
-        @click="createPost">Создать
-    </button-ex>
+        @click="createPost">Создать</button-ex>
   </form>
 </template>
 
@@ -45,6 +44,8 @@ export default {
 </script>
 
 <style scoped>
+
+
 
 
 form {

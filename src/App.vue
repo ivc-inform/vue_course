@@ -5,7 +5,7 @@
   </div>
 </template>
 
-<script lang="ts">
+<script lang="js">
 import PostForm from "@/components/PostForm.vue";
 import PostList from "@/components/PostList.vue";
 

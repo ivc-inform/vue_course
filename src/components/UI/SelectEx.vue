@@ -1,7 +1,8 @@
 <template>
-  <select :value="modelValue" @change="changeOption">
+  <select v-model="modelValue" @change="changeOption">
     <option
-        disabled value="">
+        disabled
+        value="">
       Выберите из списка
     </option>
     <option
@@ -17,8 +18,12 @@
 <script>
 export default {
   name: "select-ex",
+  data() {
+    return {
+      modelValue:""
+    }
+  },
   props: {
-    modelValue: String,
     options: {
       type: Array,
       default: () => []

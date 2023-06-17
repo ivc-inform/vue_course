@@ -1,16 +1,14 @@
 <template>
   <form @submit.prevent>
     <h4>Создание поста</h4>
-    <input
+    <input-ex
         v-model="post.title"
-        class="input"
         type="text"
-        placeholder="Названиие">
-    <input
+        placeholder="Названиие" />
+    <input-ex
         v-model="post.body"
-        class="input"
         type="text"
-        placeholder="Описание">
+        placeholder="Описание" />
     <button-ex
         class="btn"
         style="align-self: flex-end; margin-top: 15px"
@@ -19,10 +17,11 @@
 </template>
 
 <script lang="js">
-import ButtonEx from "@/components/ButtonEx.vue";
+
+import InputEx from "@/components/UI/Input-ex.vue";
 
 export default {
-  components: {ButtonEx},
+  components: {InputEx},
   data() {
     return {
       post: {
@@ -46,12 +45,7 @@ export default {
 
 <style scoped>
 
-.input {
-  width: 100%;
-  border: 1px solid teal;
-  padding: 15px;
-  margin-top: 15px;
-}
+
 
 
 form {

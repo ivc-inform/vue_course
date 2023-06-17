@@ -12,10 +12,8 @@
 
 <script lang="js">
 
-import ButtonEx from "@/components/ButtonEx.vue";
 
 export default {
-  components: {ButtonEx},
   props: {
     post: {
       type: Object,

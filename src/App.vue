@@ -1,11 +1,11 @@
 <template>
   <div class="app">
     <post-form/>
-    <post-list/>
+    <post-list :posts="posts"/>
   </div>
 </template>
 
-<script lang="js">
+<script lang="ts">
 import PostForm from "@/components/PostForm.vue";
 import PostList from "@/components/PostList.vue";
 

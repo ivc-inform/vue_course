@@ -5,8 +5,15 @@
   </div>
 </template>
 
-<script>
-export default {}
+<script lang="ts">
+export default {
+  props: {
+    posts: {
+      type: Array,
+      require: this
+    }
+  }
+}
 </script>
 
 <style scoped>

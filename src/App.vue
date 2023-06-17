@@ -1,6 +1,6 @@
 <template>
   <div class="app">
-    <form action="">
+    <form @submit.prevent>
       <h4>Создание поста</h4>
       <input @input="title=$event.target.value" v-bind:value="title" class="input" type="text" placeholder="Названиие">
       <input @input="body=$event.target.value" v-bind:value="body" class="input" type="text" placeholder="Описание">
@@ -35,6 +35,8 @@ export default {
       }
 
       this.posts.push(newPost)
+      this.title = ""
+      this.body = ""
     },
   },
 }

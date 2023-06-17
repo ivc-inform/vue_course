@@ -18,10 +18,7 @@
 
 <script lang="js">
 
-import InputEx from "@/components/UI/Input-ex.vue";
-
 export default {
-  components: {InputEx},
   data() {
     return {
       post: {

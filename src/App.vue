@@ -3,7 +3,7 @@
     <h1>Страница с постами</h1>
     <div class="app_btns">
       <button-ex @click="showDialog">Создать пост</button-ex>
-      <select-ex v-model="selectedSort"/>
+      <select-ex v-model="selectedSort" :options="sortOptions"/>
     </div>
 
     <dialog-ex v-model:show="dialogVisible">
@@ -38,7 +38,17 @@ export default {
       posts: [],
       dialogVisible: false,
       isLoading: false,
-      selectedSort: ""
+      selectedSort: "",
+      sortOptions:[
+        {
+          value: "title",
+          name:"По названию"
+        },
+        {
+          value: "bdy",
+          name:"По описанию"
+        }
+      ]
     }
   },
   methods: {

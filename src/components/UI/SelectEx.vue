@@ -1,5 +1,5 @@
 <template>
-  <select v-bind="modelValue" @change="changeOption">
+  <select :value="modelValue" @change="changeOption">
     <option
         disabled value="">
       Выберите из списка
@@ -9,7 +9,7 @@
         v-for="option in options"
         :key="option.value"
         :value="option.value">
-      {{ option.name}}
+      {{ option.name }}
     </option>
   </select>
 </template>
@@ -18,17 +18,15 @@
 export default {
   name: "select-ex",
   props: {
-    modelValue: {
-      type: String
-    },
+    modelValue: String,
     options: {
       type: Array,
       default: () => []
     }
   },
-  methods:{
-    changeOption(option){
-      this.$emit("update:modelValue", option)
+  methods: {
+    changeOption(event) {
+      this.$emit("update:modelValue", event.target.value)
     }
   }
 }

@@ -1,6 +1,6 @@
 <template>
-  <div class="dialog" v-if="show">
-    <div class="dialog__content">
+  <div class="dialog" v-if="show" @click="hideDialog">
+    <div @click.stop class="dialog__content">
       <slot></slot>
     </div>
   </div>
@@ -8,11 +8,16 @@
 
 <script>
 export default {
-  name: "dialog",
+  name: "dialog-ex",
   props: {
     show: {
       type: Boolean,
       default: false
+    }
+  },
+  methods:{
+    hideDialog(){
+      this.$emit("update:show", false)
     }
   }
 }
@@ -35,5 +40,6 @@ export default {
   border-radius: 12px;
   min-height: 50px;
   min-width: 300px;
+  padding: 20px;
 }
 </style>

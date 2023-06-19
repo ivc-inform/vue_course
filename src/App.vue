@@ -1,6 +1,11 @@
 <template>
   <div class="app">
     <h1>Страница с постами</h1>
+    <input-ex
+        v-model="searchQuery"
+        aria-placeholder="Поиск..."
+        style="width: 100%"
+    />
     <div class="app_btns">
       <button-ex @click="showDialog">Создать пост</button-ex>
       <select-ex v-model="selectedSort" :options="sortOptions"/>
@@ -13,12 +18,23 @@
     </dialog-ex>
 
     <post-list
-        :posts="sortedPost"
+        :posts="sortedAndSearchPost"
         @remove="removePost"
         v-if="!isLoading"
     />
     <div v-else>
       Идет загрузка...
+    </div>
+    <div class="page__wrapper">
+      <div
+          v-for="pageNumber in totalPage"
+          :key="pageNumber"
+          class="page"
+          :class="{
+            'current-page': page === pageNumber
+          }"
+      > {{ pageNumber }}
+      </div>
     </div>
   </div>
 
@@ -30,15 +46,20 @@ import PostList from "@/components/PostList.vue";
 import DialogEx from "@/components/UI/DialogEx.vue";
 import axios from "axios";
 import SelectEx from "@/components/UI/SelectEx.vue";
+import InputEx from "@/components/UI/Input-ex.vue";
 
 export default {
-  components: {SelectEx, DialogEx, PostList, PostForm},
+  components: {InputEx, SelectEx, DialogEx, PostList, PostForm},
   data() {
     return {
       posts: [],
       dialogVisible: false,
       isLoading: false,
       selectedSort: "",
+      searchQuery: "",
+      page: 1,
+      limit: 10,
+      totalPage: 0,
       sortOptions: [
         {
           value: "title",
@@ -65,7 +86,13 @@ export default {
     async fetchPosts() {
       try {
         this.isLoading = true
-        const response = await axios.get("https://jsonplaceholder.typicode.com/posts?_limit=10")
+        const response = await axios.get("https://jsonplaceholder.typicode.com/posts", {
+          params: {
+            _page: this.page,
+            _limit: this.limit,
+          }
+        })
+        this.totalPage = Math.ceil(response.headers['x-total-count'] / this.limit)
         this.posts = response.data
       } catch (e) {
         alert("Ошибка")
@@ -77,14 +104,15 @@ export default {
   mounted() {
     this.fetchPosts()
   },
-  computed : {
+  computed: {
     sortedPost() {
       return [...this.posts].sort((a, b) => a[this.selectedSort]?.localeCompare(b[this.selectedSort]))
+    },
+    sortedAndSearchPost() {
+      return this.sortedPost.filter(post => post.title.toLowerCase().includes(this.searchQuery.toLowerCase()))
     }
   },
-  watch: {
-
-  }
+  watch: {}
 }
 </script>
 
@@ -106,5 +134,18 @@ export default {
   margin: 15px 0;
 }
 
+.page__wrapper {
+  display: flex;
+  margin-top: 15px;
+}
 
+.page {
+  border: 1px solid black;
+  padding: 10px;
+}
+
+.current-page {
+  border: 3px solid teal;
+  border-radius: 10px;
+}
 </style>

@@ -13,7 +13,7 @@
     </dialog-ex>
 
     <post-list
-        :posts="posts"
+        :posts="sortedPost"
         @remove="removePost"
         v-if="!isLoading"
     />
@@ -77,10 +77,13 @@ export default {
   mounted() {
     this.fetchPosts()
   },
-  watch: {
-    selectedSort(newValue) {
-      this.posts.sort((a, b) => a[newValue]?.localeCompare(b[newValue]))
+  computed : {
+    sortedPost() {
+      return [...this.posts].sort((a, b) => a[this.selectedSort]?.localeCompare(b[this.selectedSort]))
     }
+  },
+  watch: {
+
   }
 }
 </script>

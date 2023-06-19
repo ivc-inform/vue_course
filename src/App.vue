@@ -33,6 +33,7 @@
           :class="{
             'current-page': page === pageNumber
           }"
+          @click="changePage(pageNumber)"
       > {{ pageNumber }}
       </div>
     </div>
@@ -83,6 +84,9 @@ export default {
     showDialog() {
       this.dialogVisible = true
     },
+    changePage(pageNumber){
+      this.page = pageNumber
+    },
     async fetchPosts() {
       try {
         this.isLoading = true
@@ -112,7 +116,11 @@ export default {
       return this.sortedPost.filter(post => post.title.toLowerCase().includes(this.searchQuery.toLowerCase()))
     }
   },
-  watch: {}
+  watch: {
+    page(){
+      this.fetchPosts()
+    }
+  }
 }
 </script>
 
